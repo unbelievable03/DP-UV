@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define         int                 long long
+#define         pb                  push_back
+#define         all(x)              (x).begin(),(x).end()
+#define         sz(x)               (int)((x).size())
+#define         FOR(i,a,b)          for(int i=a;i<b;i++)
+#define         vi                  vector<int>
+#define         mod                 1000000007
+#define         endl                "\n"
+void solve()
+{
+    int n,sum;
+    cin>>n>>sum;
+    vi v(n);
+    FOR(i,0,n){
+        cin>>v[i];
+    }
+    bool U[n+1][sum+1];
+    FOR(i,0,n+1){             // initialisation
+        U[i][0]=true;
+    }
+    FOR(i,1,sum+1){           // initialisation
+        U[0][i]=false;
+    }
+    FOR(i,1,n+1){
+        FOR(j,1,sum+1){
+            if(v[i-1]<=j){
+                U[i][j]=  U[i-1][j-v[i-1]] || U[i-1][j];
+            }
+            else{
+                U[i][j]= U[i-1][j];
+            }
+        }
+    }
+    if(U[n][sum]){
+        cout<<"TRUE"<<endl;
+    }
+    else{
+        cout<<"FALSE"<<endl;
+    }
+}
+signed main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);cout.tie(0);
+    int T=1;
+    //cin>>T;
+    while(T--){solve();}
+    return 0;
+}
