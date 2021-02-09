@@ -22,24 +22,24 @@ void SOLVE()
 	FOR(i,0,n){
 		cin>>v[i];
 	}
-	bool U[n+1][sum+1];
-	FOR(i,0,n+1){             // initialisation
-		U[i][0]=true;
+	bool dp[n+1][sum+1];
+	FOR(i,0,n+1){
+		dp[i][0]=true;
 	}
-	FOR(i,1,sum+1){           // initialisation
-		U[0][i]=false;
+	FOR(i,1,sum+1){      
+		dp[0][i]=false;
 	}
 	FOR(i,1,n+1){
 		FOR(j,1,sum+1){
 			if(v[i-1]<=j){
-				U[i][j]=  U[i-1][j-v[i-1]] || U[i-1][j];
+				dp[i][j]=  dp[i-1][j-v[i-1]] || dp[i-1][j];
 			}
 			else{
-				U[i][j]= U[i-1][j];
+				dp[i][j]= dp[i-1][j];
 			}
 		}
 	}
-	if(U[n][sum]){
+	if(dp[n][sum]){
 		cout<<"TRUE"<<endl;
 	}
 	else{
