@@ -34,7 +34,12 @@ void SOLVE()
 	}
 	FOR(i,1,n+1){
 		FOR(j,1,sum+1){
-			dp[i][j]= dp[i-1][j] || dp[i-1][j-v[i-1]];
+			if(v[i-1]<=j){
+				dp[i][j]= dp[i-1][j] || dp[i-1][j-v[i-1]];
+			}
+			else{
+				dp[i][j]=dp[i-1][j];
+			}
 		}
 	}
 	int ans=mod;
