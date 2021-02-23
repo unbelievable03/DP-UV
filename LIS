@@ -1,0 +1,15 @@
+int LIS(vi v, int n){
+	vi seq;
+	seq.pb(v[0]);
+	FOR(i,1,n){
+		if(seq.back()<v[i]){
+			seq.pb(v[i]);
+		}
+		else{
+			int ind= lower_bound(all(seq),v[i])-seq.begin();
+			seq[ind]=v[i];
+		}
+	}
+	return sz(seq);
+}
+LONGEST INCREASING SUBSEQUENCE
